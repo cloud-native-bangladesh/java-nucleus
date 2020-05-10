@@ -1,0 +1,60 @@
+== Nucleus
+
+Java Library as Template for Spring Microservices quick development.
+
+=== Checklist
+
+* [*] xref:master-doc[]
+* [*] xref:core[]
+* [ ] xref:security[]
+* [ ] xref:logging[]
+* [ ] xref:monitoring[]
+* [ ] xref:scheduler[]
+* [ ] xref:batch[]
+
+[#master-doc]
+=== Master Doc
+
+* Library's documentation.
+* Some common configuration for external tools setup.
+
+[#core]
+=== Core
+
+* [*] API Versioning
+* [*] Library versioning.
+Dependency Management Capability.
+* [ ] Base Entities
+
+[#security]
+=== Security
+
+* Keyclaok implementation, including OAuth2 and OIDC.
+
+[#logging]
+=== Logging
+
+* SL4J
+* Logging and
+
+[#tracing]
+===
+
+
+[#monitoring]
+=== Monitoring
+
+* Grafna
+* Telegraf
+* InfluxDB
+* CollectD
+
+[#scheduler]
+=== Scheduler
+
+* Quartz
+
+[#batch]
+=== Batch Processing
+
+* Spring Batch
