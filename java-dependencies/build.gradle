@@ -1,0 +1,58 @@
+plugins {
+    id 'java-platform'
+    id "maven-publish"
+}
+
+group = PROJECT_GROUP
+version = PROJECT_VERSION
+
+publishing {
+    publications {
+        javaDependencies(MavenPublication) {
+            from components.javaPlatform
+        }
+    }
+
+    repositories {
+        maven {
+            url PUBLISH_REPOSITORY
+            credentials {
+                username REPOSITORY_USERNAME
+                password REPOSITORY_PASSWORD
+            }
+        }
+    }
+}
+
+javaPlatform {
+    allowDependencies()
+}
+
+ext {
+    springBootDependencies = '2.2.5.RELEASE'
+    springCloudDependencies = 'Hoxton.SR3'
+    springDataParent = '2.2.5.RELEASE'
+
+    springfox = '2.9.2'
+    guava = '27.0-jre'
+    lombok = '1.18.12'
+
+    googleJavaFormatVersion = '1.7'
+}
+
+dependencies {
+    api platform("org.springframework.boot:spring-boot-dependencies:${springBootDependencies}")
+    api platform("org.springframework.cloud:spring-cloud-dependencies:${springCloudDependencies}")
+    api platform("org.springframework.data.build:spring-data-parent:${springDataParent}")
+
+    constraints {
+        api project(":core")
+        api project(":security")
+
+        api("io.springfox:springfox-swagger2:${springfox}")
+        api("io.springfox:springfox-swagger-ui:${springfox}")
+        api("io.springfox:springfox-data-rest:${springfox}")
+        api("com.google.guava:guava:${guava}")
+        api("org.projectlombok:lombok:${lombok}")
+    }
+}

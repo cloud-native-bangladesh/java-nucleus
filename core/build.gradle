@@ -1,0 +1,9 @@
+archivesBaseName = PROJECT_ARCHIVES_BASE_NAME
+
+dependencies {
+    compileOnly(
+            "io.springfox:springfox-swagger2",
+            "io.springfox:springfox-swagger-ui",
+            "org.springframework.boot:spring-boot-starter-web"
+    )
+}

@@ -1,0 +1,137 @@
+plugins {
+    id "java-library"
+    id "maven-publish"
+    id "org.jetbrains.gradle.plugin.idea-ext" version "0.7"
+    id "com.diffplug.gradle.spotless" version "3.27.2"
+}
+
+configure(allprojects.findAll { !it.name.endsWith('dependencies') }) { project ->
+
+    apply plugin: "java-library"
+    apply plugin: "org.jetbrains.gradle.plugin.idea-ext"
+    apply plugin: "com.diffplug.gradle.spotless"
+
+    group = PROJECT_GROUP
+    version = PROJECT_VERSION
+    description = PROJECT_DESCRIPTION
+
+    compileJava {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+        options.encoding = "UTF-8"
+    }
+
+    compileTestJava {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+        options.encoding = "UTF-8"
+        options.compilerArgs += "-parameters"
+    }
+
+    repositories {
+        maven {
+            url REPOSITORY
+            credentials {
+                username = REPOSITORY_USERNAME
+                password = REPOSITORY_PASSWORD
+            }
+        }
+    }
+
+    ext {
+        dependenciesVersion = '0.0.1-SNAPSHOT'
+        googleJavaFormatVersion = '1.7'
+    }
+
+    dependencies {
+        implementation enforcedPlatform("me.rezaulhasan.nucleus:java-dependencies:${dependenciesVersion}")
+        annotationProcessor enforcedPlatform("me.rezaulhasan.nucleus:java-dependencies:${dependenciesVersion}")
+    }
+
+    spotless.java {
+        googleJavaFormat(googleJavaFormatVersion)
+    }
+
+    tasks.withType(JavaCompile) { it.dependsOn 'spotlessApply' }
+}
+
+configure(subprojects.findAll { it.name.endsWith('core') }) {
+
+    apply plugin: "maven-publish"
+
+    publishing {
+        publications {
+            maven(MavenPublication) {
+
+                groupId = PROJECT_GROUP
+                artifactId = PROJECT_ARTIFACT
+                version = PROJECT_VERSION
+
+                from components.java
+
+                pom {
+                    name = PROJECT_NAME
+                    description = PROJECT_DESCRIPTION
+                    url = 'https://rezaulhasan.me/'
+
+                    developers {
+                        developer {
+                            id = 'xomidar'
+                            name = 'Md. Rezaul Hasan'
+                            email = 'mail@rezaulhasan.me'
+                        }
+                    }
+                }
+            }
+        }
+
+        repositories {
+            maven {
+                url PUBLISH_REPOSITORY
+                credentials {
+                    username REPOSITORY_USERNAME
+                    password REPOSITORY_PASSWORD
+                }
+            }
+        }
+    }
+
+    jar {
+        enabled = true
+
+        into("META-INF/maven/$project.group/$project.name") {
+            from "$projectDir/build/publications/maven"
+            rename ".*", "pom.xml"
+        }
+    }
+
+    tasks.withType(JavaCompile) { it.dependsOn 'generatePomFileForMavenPublication' }
+}
+
+configure(subprojects.findAll { !it.name.endsWith('dependencies') }) { project ->
+
+    dependencies {
+        compileOnly("org.projectlombok:lombok")
+
+        implementation("org.springframework.boot:spring-boot-starter")
+
+        annotationProcessor("org.projectlombok:lombok")
+
+        testImplementation("org.springframework.boot:spring-boot-starter-test")
+    }
+
+    configurations.all {
+        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+    }
+}
+
+configure(rootProject) {
+    configurations.archives.artifacts.clear()
+}
+
+wrapper {
+    gradleVersion = GRADLE_VERSION
+}
+
+idea.project.settings.delegateActions.delegateBuildRunToGradle = true
+

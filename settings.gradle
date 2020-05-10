@@ -1,0 +1,17 @@
+pluginManagement {
+    repositories {
+        maven {
+            url REPOSITORY
+            credentials {
+                username = REPOSITORY_USERNAME
+                password = REPOSITORY_PASSWORD
+            }
+        }
+    }
+}
+
+rootProject.name = PROJECT_ARTIFACT
+
+include ':core',
+        ':security',
+        ':java-dependencies'
