@@ -1,6 +1,6 @@
 == Nucleus
 
-Java Library as Template for Spring Microservices quick development.
+Java Spring Library as Template for Spring Microservices quick development.
 
 === Checklist
 
@@ -39,7 +39,6 @@ Dependency Management Capability.
 
 [#tracing]
 ===
-
 
 [#monitoring]
 === Monitoring
