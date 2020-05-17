@@ -1,4 +1,4 @@
-package me.rezaulhasan.nucleus.core.mapper;
+package org.cnb.nucleus.core.mapper;
 
 /**
  * Date of creation 10-May-2020

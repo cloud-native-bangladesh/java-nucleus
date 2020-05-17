@@ -1,4 +1,4 @@
-package me.rezaulhasan.nucleus.core.domain;
+package org.cnb.nucleus.core.domain;
 
 import java.io.Serializable;
 

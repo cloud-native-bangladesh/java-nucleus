@@ -1,4 +1,4 @@
-package me.rezaulhasan.nucleus.core.annotation;
+package org.cnb.nucleus.core.annotation;
 
 import java.lang.annotation.*;
 

@@ -1,4 +1,4 @@
-package me.rezaulhasan.nucleus.core.schema;
+package org.cnb.nucleus.core.schema;
 
 /**
  * Date of creation 10-May-2020

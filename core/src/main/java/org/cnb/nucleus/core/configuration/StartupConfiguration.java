@@ -1,4 +1,4 @@
-package me.rezaulhasan.nucleus.core.configuration;
+package org.cnb.nucleus.core.configuration;
 
 import org.springframework.context.annotation.Configuration;
 
