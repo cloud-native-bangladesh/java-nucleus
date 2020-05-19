@@ -1,0 +1,40 @@
+    {{#if page.component}}
+    {{#if page.title}}
+    <meta property="og:title" content="{{page.title}}">
+    {{/if}}
+    {{#if page.description}}
+    <meta name="description" content="{{page.description}}">
+    <meta property="og:description" content="{{page.description}}">
+    {{/if}}
+    {{#if page.keywords}}
+    <meta name="keywords" content="{{page.keywords}}">
+    {{/if}}
+    {{#if (eq page.module 'ROOT')}}
+    {{#if page.attributes.image}}
+    <meta property="og:image" content="{{site.url}}/{{page.component.name}}/{{page.attributes.image}}">
+    {{/if}}
+    {{else}}
+    {{#if page.attributes.image}}
+    <meta property="og:image" content="{{site.url}}/{{page.component.name}}/{{page.module}}/{{page.attributes.image}}">
+    {{/if}}
+    {{/if}}
+    {{#if page.attributes.image-alt}}
+    <meta name="twitter:image:alt" content="{{page.attributes.image-alt}}">
+    {{/if}}
+    {{#if page.canonicalUrl}}
+    <meta property="og:url" content="{{page.canonicalUrl}}">
+    {{/if}}
+    {{#if page.attributes.card}}
+    <meta name="twitter:card" content="{{page.attributes.card}}">
+    {{/if}}
+    {{#if site.title}}
+    <meta property="og:site_name" content="{{site.title}}">
+    {{/if}}
+    <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
+    <meta name="dcterms.subject" content="{{page.component.name}}">
+    <meta name="dcterms.identifier" content="{{page.version}}">
+    {{/if}}
+    {{#if env.ALGOLIA_API_KEY}}
+    <link rel="stylesheet" href="{{uiRootPath}}/css/vendor/docsearch.min.css">
+    <!-- fetched from https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css -->
+    {{/if}}

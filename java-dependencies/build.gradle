@@ -29,12 +29,12 @@ javaPlatform {
 }
 
 ext {
-    springBootDependencies = '2.2.5.RELEASE'
-    springCloudDependencies = 'Hoxton.SR3'
-    springDataParent = '2.2.5.RELEASE'
+    springBootDependencies = '2.3.0.RELEASE'
+    springCloudDependencies = 'Hoxton.SR4'
+    springDataParent = '2.3.0.RELEASE'
 
     springfox = '2.9.2'
-    guava = '27.0-jre'
+    guava = '29.0-jre'
     lombok = '1.18.12'
 
     googleJavaFormatVersion = '1.7'

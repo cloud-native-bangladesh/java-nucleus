@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{> head-first}}
+    <title>{{{detag (or page.title 'Untitled')}}}{{#if site.title}} | {{{site.title}}}{{/if}}</title>
+    {{#if site.url}}
+        <link rel="canonical" href="{{site.url}}">
+    {{/if}}
+    {{> head-last}}
+</head>
+<body class="home">
+{{> header}}
+{{> body-home}}
+{{> footer}}
+</body>
+</html>

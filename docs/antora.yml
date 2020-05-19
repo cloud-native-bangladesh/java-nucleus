@@ -1,0 +1,8 @@
+name: java-microservices
+title: Java Microservice Template
+version: master
+preview: true
+nav:
+  - modules/ROOT/nav.adoc
+  - modules/nucleus/nav.adoc
+  - modules/configuration-server-spring/nav.adoc

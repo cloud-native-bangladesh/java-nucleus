@@ -24,3 +24,4 @@ build/
 /dist/
 /nbdist/
 /.nb-gradle/
+/public/

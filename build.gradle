@@ -1,14 +1,12 @@
 plugins {
     id "java-library"
     id "maven-publish"
-    id "org.jetbrains.gradle.plugin.idea-ext" version "0.7"
-    id "com.diffplug.gradle.spotless" version "3.27.2"
+    id "com.diffplug.gradle.spotless" version "3.30.0"
 }
 
 configure(allprojects.findAll { !it.name.endsWith('dependencies') }) { project ->
 
     apply plugin: "java-library"
-    apply plugin: "org.jetbrains.gradle.plugin.idea-ext"
     apply plugin: "com.diffplug.gradle.spotless"
 
     group = PROJECT_GROUP
@@ -44,8 +42,8 @@ configure(allprojects.findAll { !it.name.endsWith('dependencies') }) { project -
     }
 
     dependencies {
-        implementation enforcedPlatform("me.rezaulhasan.nucleus:java-dependencies:${dependenciesVersion}")
-        annotationProcessor enforcedPlatform("me.rezaulhasan.nucleus:java-dependencies:${dependenciesVersion}")
+        implementation enforcedPlatform("org.cnb.nucleus:java-dependencies:${dependenciesVersion}")
+        annotationProcessor enforcedPlatform("org.cnb.nucleus:java-dependencies:${dependenciesVersion}")
     }
 
     spotless.java {
@@ -132,6 +130,3 @@ configure(rootProject) {
 wrapper {
     gradleVersion = GRADLE_VERSION
 }
-
-idea.project.settings.delegateActions.delegateBuildRunToGradle = true
-

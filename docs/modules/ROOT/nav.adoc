@@ -1,0 +1,12 @@
+* xref:index.adoc[Welcome]
+
+.Nucleus
+include::nucleus:partial$nav/nav-nucleus.adoc[]
+
+.Config Server
+* lol
++
+--
+include::configuration-server-spring:partial$nav/nav-configuration-spring.adoc[]
+--
+

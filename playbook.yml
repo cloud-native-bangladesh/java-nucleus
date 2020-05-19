@@ -1,0 +1,35 @@
+site:
+  title: Java Spring Microservice Template
+  url: http://training.rezaulhasan.me
+  start_page: java-microservices::index.adoc
+  keys:
+    google_analytics: 'UA-164685388-1'
+content:
+  sources:
+    - url: .
+      branches: HEAD
+      start_path: docs
+    - url: https://github.com/cloud-native-bangladesh/java-configuration-server-spring.git
+      branches: HEAD
+      start_path: docs
+asciidoc:
+  attributes:
+    hide-uri-scheme: ''
+    table-caption: ~
+    page-toclevels: '3'
+    tabs: tabs
+  extensions:
+    - ./docs/lib/tabs-block.js
+ui:
+  bundle:
+    url: https://github.com/couchbase/docs-ui/releases/download/v246/ui-bundle.zip
+    snapshot: true
+  supplemental_files: ./docs/supplemental-ui
+output:
+  dir: ./public
+  clean: true
+  destinations:
+    - provider: archive
+      path: ./public/master.zip
+    - provider: fs
+      path: ./
